@@ -10,23 +10,29 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout del código fuente
-        uses: actions/checkout@v3
+    - name: Checkout del Código Fuente
+      uses: actions/checkout@v3
 
-      - name: Configurar Python
-        uses: actions/setup-python@v3
-        with:
-          python-version: "3.10"
+    - name: Configurar Python
+      uses: actions/setup-python@v3
+      with:
+        python-version: "3.10"
 
-      - name: Instalar Hugging Face CLI y actualizarla
-        run: pip install --upgrade huggingface_hub
+    - name: Verificar Token de Hugging Face
+      run: |
+        if [ -z "${{ secrets.HF_TOKEN }}" ]; then
+          echo "Error: No se ha configurado el token de Hugging Face. Añádelo en Settings > Secrets."
+          exit 1
+        fi
 
-      - name: Crear el Space en Hugging Face
-        run: |
-          huggingface-cli repo create Medical-RAGArch-System --type space --yes || echo "El Space ya existe, se continuará con la subida de archivos."
+    - name: Instalar Hugging Face CLI
+      run: pip install huggingface_hub
 
-      - name: Subir contenido al Space
-        run: |
-          huggingface-cli upload Melkoroth/Medical-RAGArch-System . . --repo-type space --commit-message "Deploy automático"
-        env:
-          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+    - name: Crear el Space en Hugging Face
+      run: |
+        huggingface-cli repo create Medical-RAGArch-System --type space --yes || echo "El Space ya existe, se continuará con la subida de archivos."
+
+    - name: Subir Contenido al Space
+      run: huggingface-cli upload --repo-id "Melkoroth/Medical-RAGArch-System" --repo-type space --include-all-revision .
+      env:
+        HF_TOKEN: ${{ secrets.HF_TOKEN }}
