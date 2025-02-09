@@ -25,4 +25,6 @@ jobs:
         run: huggingface-cli login --token "${{ secrets.HF_TOKEN }}"
 
       - name: Push to Hugging Face Spaces
-        run: huggingface-cli repo create Melkoroth/Medical-RAGArch-System -t space --yes && huggingface-cli upload ./ --repo-id Melkoroth/Medical-RAGArch-System
+        run: |
+          huggingface-cli repo create Melkoroth/Medical-RAGArch-System --type space --yes
+          huggingface-cli upload ./ --repo-id Melkoroth/Medical-RAGArch-System
