@@ -10,24 +10,25 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+    - name: Checkout del código fuente
+      uses: actions/checkout@v3
 
-      - name: Set up Python
-        uses: actions/setup-python@v3
-        with:
-          python-version: "3.10"
+    - name: Configurar Python
+      uses: actions/setup-python@v3
+      with:
+        python-version: "3.10"
 
-      - name: Install Hugging Face CLI
-        run: pip install huggingface_hub
+    - name: Instalar dependencias
+      run: pip install -r requirements.txt
 
-      - name: Login to Hugging Face
-        run: huggingface-cli login --token "${{ secrets.HF_TOKEN }}"
+    - name: Configurar Hugging Face CLI
+      run: |
+        pip install huggingface_hub
+        huggingface-cli login --token ${{ secrets.HF_TOKEN }}
 
-      - name: Create or update Hugging Face Space
-        run: |
-          huggingface-cli repo create Melkoroth/Medical-RAGArch-System --type space --yes || echo "Space already exists"
-          huggingface-cli upload ./ --repo-id Melkoroth/Medical-RAGArch-System --recursive
+    - name: Subir contenido al Hugging Face Space
+      run: |
+        huggingface-cli repo upload --repo-type space --repo-id Melkoroth/Medical-RAGArch-System . --commit-message "Deploy automático"
 
-      - name: Debugging Step
-        run: echo "Deployment completed with exit code $?"
+    - name: Ejecutar FastAPI en Hugging Face
+      run: uvicorn api.main:app --host 0.0.0.0 --port 7860
