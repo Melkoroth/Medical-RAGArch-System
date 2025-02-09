@@ -25,8 +25,8 @@ jobs:
 
     - name: Crear el Space en Hugging Face
       run: |
-        huggingface-cli repo create Melkoroth/Medical-RAGArch-System --type space --space-sdk docker --yes
+        huggingface-cli repo create Medical-RAGArch-System --type space --sdk docker --yes || echo "El Space ya existe, se continuará con la subida de archivos."
 
     - name: Subir contenido al Space
       run: |
-        huggingface-cli repo upload Melkoroth/Medical-RAGArch-System --recursive --commit-message "Deploy automático"
+        huggingface-cli repo upload Medical-RAGArch-System --recursive --commit-message "Deploy automático"
