@@ -1,0 +1,13 @@
+version: 2
+updates:
+  - package-ecosystem: "pip" # Ecosistema de dependencias de Python
+    directory: "/"           # Ubicación del archivo requirements.txt
+    schedule:
+      interval: "weekly"     # Frecuencia de actualización (semanal)
+    open-pull-requests-limit: 10 # Máximo de pull requests abiertas
+
+  - package-ecosystem: "github-actions" # Ecosistema para GitHub Actions
+    directory: "/"                      # Ubicación de workflows
+    schedule:
+      interval: "weekly"                # Frecuencia de actualización (semanal)
+    open-pull-requests-limit: 5         # Máximo de pull requests abiertas
