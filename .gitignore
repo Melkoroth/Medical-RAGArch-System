@@ -1,0 +1,10 @@
+# Archivos de configuración sensibles
+security/jwt_key.txt
+config/config.yaml
+
+# Archivos temporales y caché
+__pycache__/
+*.log
+*.db
+*.sqlite
+*.pkl

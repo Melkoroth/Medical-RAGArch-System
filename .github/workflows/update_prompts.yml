@@ -1,0 +1,19 @@
+name: Actualización de Prompts
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+  push:
+    branches:
+      - main
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repositorio
+        uses: actions/checkout@v2
+
+      - name: Sincronizar prompts con Hugging Face
+        run: |
+          curl -X POST "https://huggingface.co/api/update_dataset" -H "Authorization: Bearer ${{ secrets.HF_TOKEN }}"
