@@ -26,16 +26,6 @@ jobs:
         huggingface-cli repo create Medical-RAGArch-System --type space --yes || echo "El Space ya existe, se continuará con la subida de archivos."
 
     - name: Subir contenido al Space
-      run: huggingface-cli upload --repo-id "TU_USUARIO/Medical-RAGArch-System" --repo-type space --include-all-revision .
+      run: huggingface-cli upload --repo-id "Melkoroth/Medical-RAGArch-System" --repo-type space --include-all-revision .
       env:
         HF_TOKEN: ${{ secrets.HF_TOKEN }}
-
-    - name: Post Configurar Python
-      if: failure()
-      run: |
-        echo "Error al configurar Python"
-
-    - name: Post Checkout del código fuente
-      if: failure()
-      run: |
-        echo "Error en el checkout del código fuente"
