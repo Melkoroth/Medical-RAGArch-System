@@ -43,7 +43,7 @@ jobs:
 
       - name: Start FastAPI server
         run: |
-          cd ./path/to/your/app  # Reemplaza esto con el directorio correcto
+          cd .  # Se queda en la raíz del repositorio
           nohup uvicorn main:app --host 0.0.0.0 --port 8000 &
           sleep 10  # Espera a que el servidor se inicie
 
