@@ -25,7 +25,7 @@ jobs:
           python-version: ${{ matrix.python-version }}
 
       - name: Cache Python Dependencies
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: ~/.cache/pip
           key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}-${{ github.run_id }}
@@ -40,6 +40,12 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install --no-cache-dir -r requirements.txt
+
+      - name: Start FastAPI server
+        run: |
+          cd ./path/to/your/app  # Reemplaza esto con el directorio correcto
+          nohup uvicorn main:app --host 0.0.0.0 --port 8000 &
+          sleep 10  # Espera a que el servidor se inicie
 
       - name: Test with Pytest
         run: |
@@ -58,7 +64,7 @@ jobs:
           python-version: '3.9'
 
       - name: Cache SAM Build Artifacts
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: .aws-sam/build
           key: ${{ runner.os }}-sam-${{ hashFiles('**/*.py') }}-${{ github.run_id }}
@@ -66,7 +72,7 @@ jobs:
             ${{ runner.os }}-sam-
 
       - name: Cache AWS SAM CLI
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: ~/.aws-sam-cli
           key: ${{ runner.os }}-samcli-${{ github.run_id }}
