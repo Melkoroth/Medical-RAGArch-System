@@ -1,0 +1,12 @@
+# Dependencias necesarias para Medical-RAGArch-System
+uvicornrequests
+boto3
+aws-lambda
+redis
+
+PyJWT
+prophet
+fastapi
+pyyaml
+gradio
+cryptography
