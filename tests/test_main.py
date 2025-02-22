@@ -1,5 +1,6 @@
 
 import requests
+import logging
 
 def test_main_endpoint():
     url = "https://localhost:8000/"
