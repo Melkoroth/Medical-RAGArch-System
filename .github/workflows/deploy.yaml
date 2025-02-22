@@ -11,20 +11,24 @@ on:
 jobs:
   install-dependencies:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ['3.8', '3.9', '3.10', '3.11']
+        fail-fast: false
     steps:
       - name: Check out repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
-      - name: Set up Python
-        uses: actions/setup-python@v2
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
         with:
-          python-version: '3.9'
+          python-version: ${{ matrix.python-version }}
 
       - name: Cache Python Dependencies
         uses: actions/cache@v2
         with:
           path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}-${{ github.run_id }}
           restore-keys: |
             ${{ runner.os }}-pip-
 
@@ -42,10 +46,10 @@ jobs:
     needs: install-dependencies
     steps:
       - name: Check out repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
           python-version: '3.9'
 
@@ -53,9 +57,17 @@ jobs:
         uses: actions/cache@v2
         with:
           path: .aws-sam/build
-          key: ${{ runner.os }}-sam-${{ hashFiles('**/*.py') }}
+          key: ${{ runner.os }}-sam-${{ hashFiles('**/*.py') }}-${{ github.run_id }}
           restore-keys: |
             ${{ runner.os }}-sam-
+
+      - name: Cache AWS SAM CLI
+        uses: actions/cache@v2
+        with:
+          path: ~/.aws-sam-cli
+          key: ${{ runner.os }}-samcli-${{ github.run_id }}
+          restore-keys: |
+            ${{ runner.os }}-samcli-
 
       - name: Install AWS SAM CLI
         run: |
