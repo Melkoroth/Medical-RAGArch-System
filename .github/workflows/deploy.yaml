@@ -49,7 +49,8 @@ jobs:
 
       - name: Test with Pytest
         run: |
-          pytest tests
+          python -m pip install httpx  # Instala HTTPX temporalmente
+          pytest tests --disable-warnings
 
   deploy-to-aws-lambda:
     runs-on: ubuntu-latest
