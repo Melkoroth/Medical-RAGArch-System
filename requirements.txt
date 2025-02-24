@@ -1,5 +1,5 @@
 # Dependencias necesarias para Medical-RAGArch-System
-uvicorn>=0.17.6,<0.18.0
+uvicorn>=0.17.6,<0.35.0
 requests>=2.27.1,<2.33.0
 boto3>=1.24.0,<2.0.0
 awslambdaric>=2.0.0,<3.0.0
