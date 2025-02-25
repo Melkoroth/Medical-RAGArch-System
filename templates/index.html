@@ -1,0 +1,25 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Interacción en Tiempo Real</title>
+    </head>
+    <body>
+        <h1>WebSocket en Tiempo Real</h1>
+        <textarea id="chat" rows="10" cols="30"></textarea><br>
+        <input type="text" id="message" autocomplete="off"/>
+        <button onclick="sendMessage()">Enviar</button>
+        <script>
+            var ws = new WebSocket("ws://localhost:8000/ws");
+            ws.onmessage = function(event) {
+                var chat = document.getElementById("chat");
+                chat.value += event.data + "\n";
+            };
+            function sendMessage() {
+                var input = document.getElementById("message");
+                ws.send(input.value);
+                input.value = '';
+            }
+        </script>
+    </body>
+</html>
