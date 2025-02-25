@@ -5,11 +5,11 @@ matplotlib==3.5.2
 plotly==5.10.0
 # Inteligencia Contextual
 langdetect==1.0.9
-transformers==4.24.0
-nltk==3.7
+transformers==4.48.0
+nltk==3.9.1
 # Predicciones y Alertas
 scikit-learn-intelex==2023.1
-dash==2.3.0
+dash==2.15.0
 schedule==1.1.0
 # Análisis Avanzado de Interacciones
 networkx==2.6.3
@@ -30,7 +30,7 @@ poetry==2.0.1
 
 # OCR y Tesseract
 pytesseract>=0.3.9,<0.4.0
-Pillow>=9.0.0,<10.0.0
+Pillow>=9.0.0,<12.0.0
 
 # Paquetes de idiomas para Tesseract
 tesseract-ocr
