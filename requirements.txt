@@ -1,0 +1,57 @@
+# Predicciones de Series Temporales
+prophet==1.1.2
+pmdarima==1.8.5
+matplotlib==3.5.2
+plotly==5.10.0
+# Inteligencia Contextual
+langdetect==1.0.9
+transformers==4.24.0
+nltk==3.7
+# Predicciones y Alertas
+scikit-learn-intelex==2023.1
+dash==2.3.0
+schedule==1.1.0
+# Análisis Avanzado de Interacciones
+networkx==2.6.3
+# Seguridad y Cumplimiento
+auditlog==1.0.0
+mimesis==5.0.0
+# WebSockets Mejorada
+websockets==10.3
+fastapi-websockets==0.1.0
+asyncio==3.4.3
+# Funcionalidades Adicionales y Utilidades
+passlib[bcrypt]==1.7.4
+email-validator==1.2.1
+babel==2.10.1
+# Gestión de Dependencias
+pip-tools==6.6.2
+poetry==2.0.1
+
+# OCR y Tesseract
+pytesseract>=0.3.9,<0.4.0
+Pillow>=9.0.0,<10.0.0
+
+# Paquetes de idiomas para Tesseract
+tesseract-ocr
+tesseract-ocr-spa  # Español
+tesseract-ocr-eng  # Inglés
+tesseract-ocr-fra  # Francés
+tesseract-ocr-deu  # Alemán
+tesseract-ocr-ita  # Italiano
+tesseract-ocr-por  # Portugués
+tesseract-ocr-cat  # Catalán
+tesseract-ocr-eus  # Euskera
+tesseract-ocr-glg  # Gallego
+
+# Integración con AWS Lambda
+mangum>=0.11.0,<0.12.0
+
+# Seguridad y Cifrado
+cryptography==44.0.1
+
+# Cacheo con Redis Cloud Essentials
+redis>=4.3.3,<5.0.0
+
+# Integración con AWS Lambda
+mangum>=0.11.0,<0.12.0
