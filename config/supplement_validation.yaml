@@ -1,0 +1,11 @@
+deficiencias:
+  hierro:
+    síntomas: ["Fatiga", "Palidez", "Dificultad para respirar"]
+    suplementación:
+      dosis_recomendada: "18 mg/día"
+      fuentes_naturales: ["Espinacas", "Carne roja", "Lentejas"]
+  vitamina_d:
+    síntomas: ["Dolor óseo", "Fatiga", "Debilidad muscular"]
+    suplementación:
+      dosis_recomendada: "1000 UI/día"
+      fuentes_naturales: ["Salmón", "Yema de huevo", "Lácteos fortificados"]

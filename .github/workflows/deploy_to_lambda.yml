@@ -1,0 +1,43 @@
+
+name: Deploy FastAPI to AWS Lambda with API Gateway
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy_lambda:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v2
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-east-1
+
+    - name: Package FastAPI with Mangum
+      run: |
+        zip -r function.zip .
+
+    - name: Deploy to Lambda
+      run: |
+        aws lambda update-function-code --function-name MyRAGArchLambda --zip-file fileb://function.zip
+        aws lambda update-function-configuration --function-name MyRAGArchLambda --memory-size 512 --timeout 30
+
+    - name: Create or Update API Gateway
+      run: |
+        api_id=$(aws apigatewayv2 get-apis --query "Items[?Name=='RAGArchAPI'].ApiId" --output text)
+        if [ -z "$api_id" ]; then
+          api_id=$(aws apigatewayv2 create-api --name "RAGArchAPI" --protocol-type "HTTP" --target $(aws lambda get-function-url-config --function-name MyRAGArchLambda --query "FunctionUrl" --output text) --output text --query "ApiId")
+        fi
+        aws apigatewayv2 create-integration --api-id $api_id --integration-type "AWS_PROXY" --integration-uri $(aws lambda get-function-url-config --function-name MyRAGArchLambda --query "FunctionUrl" --output text)
+        aws apigatewayv2 create-route --api-id $api_id --route-key "ANY /{proxy+}" --target "integrations/$(aws apigatewayv2 get-integrations --api-id $api_id --query "Items[0].IntegrationId" --output text)"
+        aws apigatewayv2 create-deployment --api-id $api_id --description "FastAPI Deployment"
+        aws apigatewayv2 update-api --api-id $api_id --cors-configuration AllowOrigins='[*]' AllowMethods='[*]' AllowHeaders='[*]'
+        aws apigatewayv2 create-stage --api-id $api_id --stage-name "prod" --auto-deploy
