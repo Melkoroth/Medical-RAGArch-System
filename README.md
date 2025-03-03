@@ -13,28 +13,12 @@
 ✅ **Poetry → PDM** (**Gestión de dependencias más eficiente**).  
 ✅ **Plotly → Seaborn/Altair** (**Visualización más ligera y rápida**).  
 
-### 🔹 **3. Instalación 100% Automática en Windows**  
-✅ **Ejecuta `install_windows10.bat` y todo se instalará automáticamente**.  
-✅ **Descarga RAGArch desde GitHub y lo configura con PaddleOCR y todas las dependencias**.  
-✅ **Empaqueta todo en un ZIP listo para subir a GitHub y desplegar en DynamoDB**.  
-
 ---  
 
 ## 📘 **Instrucciones de Instalación y Uso**  
+  
 
-### **🔹 1. Instalación Automática en Windows**  
-Ejecuta el siguiente archivo en Windows para instalar todo:  
-
-```batch
-install_windows10.bat
-```  
-
-Este script:  
-1️⃣ **Descarga el repositorio desde GitHub**.  
-2️⃣ **Instala PaddleOCR y todas las dependencias optimizadas**.  
-3️⃣ **Empaqueta todo en un ZIP listo para desplegar en DynamoDB**.  
-
-### **🔹 2. Instalación Manual (Linux/macOS/aarch64)**  
+### **🔹 1. Instalación Manual (Linux/macOS/aarch64)**  
 Si prefieres instalar manualmente en Linux, usa:  
 
 ```bash
@@ -43,7 +27,7 @@ cd Medical-RAGArch-System
 pip install -r requirements.txt
 ```  
 
-### **🔹 3. Ejecución del OCR con PaddleOCR**  
+### **🔹 2. Ejecución del OCR con PaddleOCR**  
 Ejemplo de uso en Python:  
 
 ```python
