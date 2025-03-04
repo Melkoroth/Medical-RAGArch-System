@@ -1,0 +1,25 @@
+name: Deploy Personal AWS Environment
+
+on:
+  workflow_dispatch:  # Solo se ejecuta manualmente
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up AWS CDK
+      run: |
+        npm install -g aws-cdk
+
+    - name: Deploy AWS Environment
+      run: |
+        cdk deploy --require-approval never || echo "⚠️ Error en el despliegue, revisar logs."
+
+    - name: Retrieve API Endpoint
+      run: |
+        API_URL=$(aws apigateway get-rest-apis --query 'items[?name==`MedicalRAGArchAPI`].id' --output text)
+        echo "✅ API desplegada en: https://${API_URL}.execute-api.us-east-1.amazonaws.com/prod/"

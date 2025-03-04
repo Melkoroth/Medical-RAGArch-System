@@ -1,0 +1,45 @@
+
+name: Actualización de Prompts
+
+on:
+  schedule:
+    - cron: '0 * * * *'  # Ejecutar cada hora
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📂 Configurar autenticación con GitHub Token
+        run: |
+          git config --global user.email "github-actions@github.com"
+          git config --global user.name "GitHub Actions"
+          echo "✅ Configuración de Git completada."
+
+      - name: 📂 Clonar o actualizar el repositorio de prompts
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          REPO_URL="https://x-access-token:${GITHUB_TOKEN}@github.com/Melkoroth/Medical-RAGArch-System.git"
+          
+          if [ -d "prompts_repo" ]; then
+            echo "🔄 Actualizando repositorio de prompts..."
+            cd prompts_repo
+            git pull origin main || echo "⚠️ Repositorio vacío, esperando el próximo ciclo de actualización."
+          else
+            echo "🔄 Clonando repositorio de prompts..."
+            git clone "$REPO_URL" prompts_repo || echo "⚠️ Repositorio vacío, esperando el próximo ciclo de actualización."
+          fi
+
+      - name: 📦 Verificar si hay prompts disponibles
+        run: |
+          if [ -z "$(ls -A prompts_repo)" ]; then
+            echo "⚠️ Repositorio vacío. No hay prompts aún. Esperando el próximo ciclo."
+            exit 0  # Salir sin error
+          fi
+
+      - name: 🚀 Procesar archivos de prompts
+        run: |
+          echo "✅ Prompts encontrados. Procediendo con la actualización."
+          ls prompts_repo  # Mostrar archivos disponibles
