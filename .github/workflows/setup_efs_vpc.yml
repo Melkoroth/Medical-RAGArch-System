@@ -1,0 +1,36 @@
+
+name: Setup AWS EFS + VPC Peering
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  setup-efs-vpc:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-east-1
+
+    - name: Create EFS File Systems in Both Accounts
+      run: |
+        aws efs create-file-system --performance-mode generalPurpose --throughput-mode bursting --region us-east-1
+        aws efs create-file-system --performance-mode generalPurpose --throughput-mode bursting --region us-east-1 --profile secondary-account
+
+    - name: Configure Resource Access Manager for EFS Sharing
+      run: |
+        aws ram create-resource-share --name "EFS-Share" --resource-arns arn:aws:elasticfilesystem:us-east-1:ACCOUNT_ID:file-system/EFS_ID --principals SECONDARY_ACCOUNT_ID
+
+    - name: Configure VPC Peering
+      run: |
+        PEERING_ID=$(aws ec2 create-vpc-peering-connection --vpc-id VPC_PRIMARY --peer-vpc-id VPC_SECONDARY --peer-owner-id SECONDARY_ACCOUNT_ID --query 'VpcPeeringConnection.VpcPeeringConnectionId' --output text)
+        aws ec2 accept-vpc-peering-connection --vpc-peering-connection-id $PEERING_ID --region us-east-1

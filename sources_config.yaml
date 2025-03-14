@@ -1,0 +1,23 @@
+prioridad_fuentes:
+  - WHO
+  - PubMed
+  - MedlinePlus
+  - FDA
+  - NICE
+  - Cochrane
+  - AEMPS
+  - CIMA
+  - EFSA
+
+regionalizacion:
+  Europa:
+    - EFSA
+    - NICE
+    - AEMPS
+  América:
+    - FDA
+    - OPS
+    - Cochrane
+  Asia:
+    - IDF Asia
+    - WHO

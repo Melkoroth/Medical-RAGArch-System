@@ -1,0 +1,185 @@
+### Core Dependencies
+asyncio
+asyncio
+datetime
+datetime
+json
+json
+logging
+logging
+os
+os
+pydantic
+pydantic
+sys
+sys
+time
+time
+
+### Machine Learning & AI
+autogluon
+autogluon
+lightgbm
+lightgbm
+neuralprophet
+neuralprophet
+sklearnex
+sklearnex
+torch
+torch
+transformers
+transformers
+xgboost
+xgboost
+
+### NLP & Text Processing
+langdetect
+langdetect
+nltk
+nltk
+
+### Web Frameworks & APIs
+email_validator
+email_validator
+fastapi
+fastapi
+httpx
+httpx
+mangum
+mangum
+starlette
+starlette
+
+### Database & Caching
+dask
+dask
+networkx
+networkx
+redis
+schedule
+schedule
+
+### Security & Cryptography
+cryptography
+cryptography
+hmac
+hmac
+jwt
+jwt
+paseto
+paseto
+ssl
+ssl
+
+### Utility & Miscellaneous
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# AWS SDK
+# Análisis Avanzado de Interacciones
+# Cacheo con Redis Cloud Essentials
+# Frameworks principales
+# Funcionalidades Adicionales y Utilidades
+# Gestión de Dependencias (PDM en lugar de Poetry)
+# Inteligencia Contextual
+# Machine Learning & Data Science
+# OCR y Procesamiento de PDFs
+# Predicciones de Series Temporales
+# Predicciones y Alertas
+# Seguridad y Cifrado
+# Testeo
+# Visualización Optimizada
+# WebSockets Mejorada
+PIL
+PIL
+Pillow>=9.0.0,<10.0.0
+altair
+altair
+altair==4.2.2
+api
+api
+asyncio==3.4.3
+aws
+aws
+aws_cdk
+babel==2.10.1
+base64
+base64
+boto3
+botocore
+botocore
+cryptography==44.0.1
+dash
+dash
+dash==2.3.0
+dotenv
+email-validator==1.2.1
+fastapi==0.95.0
+fpdf
+gradio
+hashlib
+joblib
+jose
+langdetect==1.0.9
+lightgbm==3.3.5
+mangum>=0.11.0,<0.12.0
+matplotlib
+mimesis==5.0.0
+modules
+modules
+networkx==2.6.3
+neuralprophet==0.4.2
+nltk==3.7
+numba
+numba
+numpy
+paddleocr
+paddleocr
+paddleocr==2.6.1
+pandas
+passlib[bcrypt]==1.7.4
+pdfkit
+pdm==2.7.0
+plotly
+pmdarima
+prophet
+pytesseract
+pytest
+redis>=4.3.3,<5.0.0
+requests
+schedule==1.1.0
+seaborn
+seaborn
+seaborn==0.12.2
+selenium
+shutil
+shutil
+sklearn
+streamlit
+tensorflow
+transformers==4.24.0
+typing
+typing
+unittest
+unittest
+uvicorn
+webdriver-manager
+websockets==10.3
+xgboost==1.7.5
+
+
+# AWS CDK (Cloud Development Kit) - Infraestructura como códigoaws-cdk-lib
+# Dask - Procesamiento distribuido de datosdask[array]dask[dataframe]
+# Visualización de datosmatplotlibplotly

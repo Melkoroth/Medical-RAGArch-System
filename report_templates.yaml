@@ -1,0 +1,10 @@
+formato_salida:
+  pdf:
+    - título: "Informe de Evaluación Clínica"
+    - encabezado: "Datos del Paciente"
+    - secciones: ["Analíticas", "Interacciones", "Suplementación"]
+  excel:
+    hojas:
+      - "Datos Clínicos"
+      - "Interacciones"
+      - "Recomendaciones Finales"

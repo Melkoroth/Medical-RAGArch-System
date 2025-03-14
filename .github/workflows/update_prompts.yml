@@ -1,0 +1,44 @@
+name: Update Prompts
+
+on:
+  schedule:
+    - cron: '0 0 * * 1'
+  workflow_dispatch:
+
+jobs:
+  update-prompts:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.9"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Retrieve latest prompts
+        env:
+          ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git clone https://github.com/Melkoroth/Medical-RAGArch-Prompts.git prompts || true
+          cd prompts || exit 0
+          git pull || exit 0
+
+      - name: Update prompts
+        run: |
+          python scripts/update_prompts.py || echo "No hay nuevos prompts, continuando..."
+
+      - name: Commit and push updates
+        run: |
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "GitHub Actions Bot"
+          git add prompts || true
+          git commit -m "Actualización automática de prompts" || exit 0
+          git push origin main || exit 0

@@ -1,0 +1,6 @@
+{
+    "model_name": "facebook/bart-large-cnn",
+    "max_length": 150,
+    "min_length": 50,
+    "do_sample": false
+}

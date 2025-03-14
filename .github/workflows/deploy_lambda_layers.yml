@@ -1,0 +1,30 @@
+name: Deploy AWS Lambda Layers
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy-layers:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: '3.9'
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt -t python
+
+      - name: Package Lambda Layer
+        run: zip -r layer.zip python
+
+      - name: Deploy to AWS Lambda Layers
+        run: |
+          aws lambda publish-layer-version --layer-name MLDependenciesLayer \
+          --description 'ML Dependencies for Lambda' \
+          --zip-file fileb://layer.zip --compatible-runtimes python3.9

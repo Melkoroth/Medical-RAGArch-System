@@ -1,0 +1,18 @@
+{
+    "interacciones": [
+        {
+            "medicamento_1": "Warfarina",
+            "medicamento_2": "Aspirina",
+            "nivel_riesgo": "Alta",
+            "efecto": "Aumento del riesgo de sangrado",
+            "recomendacion": "Evitar combinaci\u00f3n o monitorizar INR."
+        },
+        {
+            "medicamento_1": "Metformina",
+            "suplemento": "Vitamina B12",
+            "nivel_riesgo": "Moderada",
+            "efecto": "Riesgo de deficiencia de B12 con uso prolongado",
+            "recomendacion": "Monitorizar niveles de B12 anualmente."
+        }
+    ]
+}
