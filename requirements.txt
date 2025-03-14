@@ -139,7 +139,7 @@ matplotlib
 mimesis==5.0.0
 modules
 modules
-networkx==2.6.3
+networkx==3.4.2
 neuralprophet==0.4.2
 nltk==3.7
 numba
