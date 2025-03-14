@@ -162,7 +162,7 @@ requests
 schedule==1.1.0
 seaborn
 seaborn
-seaborn==0.12.2
+seaborn==0.13.2
 selenium
 shutil
 shutil
