@@ -176,7 +176,7 @@ unittest
 unittest
 uvicorn
 webdriver-manager
-websockets==10.3
+websockets==15.0.1
 xgboost==1.7.5
 
 
