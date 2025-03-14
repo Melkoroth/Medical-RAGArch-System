@@ -107,7 +107,7 @@ PIL
 Pillow>=9.0.0,<10.0.0
 altair
 altair
-altair==4.2.2
+altair==5.5.0
 api
 api
 asyncio==3.4.3
